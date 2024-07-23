@@ -9,7 +9,7 @@ interface Post {
 const main = () => {
   const app = express();
   app.use(express.json());
-  const PORT = 4000;
+  const PORT = 4001;
 
   const posts: Record<string, Post> = {};
 
@@ -30,7 +30,7 @@ const main = () => {
     await fetch("http://localhost:4005/events", {
       method: "POST",
       body: JSON.stringify({
-        type: "PostCreated",
+        type: "CommentCreated",
         data: posts[id],
       }),
     });
@@ -38,7 +38,7 @@ const main = () => {
     res.status(201).send(posts[id]);
   });
   app.listen(PORT, () => {
-    console.log(`[+] POSTS SERVER ACTIVE: http://localhost:${PORT}`);
+    console.log(`[+] COMMENTS SERVER ACTIVE: http://localhost:${PORT}`);
   });
 };
 main();

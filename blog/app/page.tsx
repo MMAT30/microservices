@@ -1,9 +1,18 @@
-import Image from "next/image";
+"use server";
+import { GetPostsAction } from "@/actions/GetPostsAction";
+import PostForm from "@/components/PostForm";
+import PostList from "@/components/PostList";
+import { PostListType } from "@/types/PostListType";
 
-export default function Home() {
+
+
+export default async function Home() {
+  const posts: PostListType = await GetPostsAction();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      
-    </main>
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+      <PostForm />
+      <PostList posts={posts} />
+    </div>
   );
 }

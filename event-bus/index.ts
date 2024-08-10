@@ -1,8 +1,10 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 
 const main = () => {
   const app = express();
   app.use(express.json());
+  app.use(cors());
   const PORT = 4005;
 
   app.post("/events", async (req: Request, res: Response) => {
